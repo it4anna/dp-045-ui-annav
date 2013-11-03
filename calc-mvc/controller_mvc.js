@@ -1,4 +1,4 @@
-function InIt () {
+function Controller () {
     var myCalc= new Calculator(),
         operand='',
         result = document.getElementById("result_input"),

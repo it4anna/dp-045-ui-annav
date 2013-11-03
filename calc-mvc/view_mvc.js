@@ -1,8 +1,12 @@
+"use strict";
+
 function View () {
-    var my_controller = new  InIt ();
+    var my_controller = new  Controller (),
+        addNumbBtn,
+        addOperBtnValues,
+        addEvents;
 
-
-    this.addNumbBtn = function() {
+    addNumbBtn = function() {
         var i = 1;
 
         while (i < 10) {
@@ -25,7 +29,7 @@ function View () {
     };
 
 
-    this.addOperBtnValues =  function () {
+    addOperBtnValues =  function () {
         console.log("view.addOperBtnValues();");
 
         document.getElementById("plus").value = "+";
@@ -35,7 +39,7 @@ function View () {
         document.getElementById("C").value = "C";
     };
 
-    this.addEvents =function () {
+    addEvents = function () {
 
         document.getElementById("first_value").addEventListener("click", my_controller.setField1, false);
         document.getElementById("second_value").addEventListener("click",my_controller.setField2, false);
@@ -46,6 +50,12 @@ function View () {
         document.getElementById("division").addEventListener("click",my_controller.division,false);
 
         document.getElementById("C").addEventListener("click",my_controller.erase,false);
+    };
+
+    this.init = function () {
+        addNumbBtn();
+        addOperBtnValues();
+        addEvents();
     };
     return this;
 }
