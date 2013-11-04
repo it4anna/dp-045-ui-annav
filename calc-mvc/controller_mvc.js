@@ -1,3 +1,4 @@
+"use strict";
 function Controller () {
     var myCalc= new Calculator(),
         operand='',
