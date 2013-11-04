@@ -1,0 +1,9 @@
+div {
+    background: lightgray;
+    width: 150px;
+    height: 150px;
+    line-height: 20px;
+    text-align: center;
+    font-size: 25px;
+    color: yellow;
+}
