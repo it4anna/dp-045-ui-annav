@@ -1,6 +1,7 @@
 "use strict";
-//model
+//model:
 function Watch () {
+    console.log ( "new Watch (model)" );
     var format_time = {};
 
     function toDouble ( str ) {
