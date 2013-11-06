@@ -1,13 +1,36 @@
 <!DOCTYPE html>
+    <html>
         <head>
-    <meta charset="UTF-8">
-	<meta http-equiv="refresh" content="0; url=http://test1.ru/calculator_mvc.html" />
+            <title>Calculator</title>
+            <meta charset="UTF-8">
+            <script src = "ajax.js"></script>
+            <script  src = "model.js"></script>
+            <script  src = "controller.js"></script>
+            <script  src = "view.js"></script>
+            <script  src = "run.js"></script>
+            <link  rel = "stylesheet"  type = "text/css"  href = "my_style.css" >
         </head>
-<html><body>
-
-<table width=100% height=100%>
-<tr><td align=center>
-</td></tr>
-</table>
-
-</body></html>
+        <body>
+            <form id="calculator">
+                <fieldset>
+                    <div id="text_pad">
+                        <label for="first_value"></label>
+                        <input type="text" id="first_value" value="" />
+                        <label for="second_value"></label>
+                        <input type="text" id="second_value" value="" />
+                        <label for="result_input"></label>
+                        <input type="text" id="result_input" value="" />
+                    </div>
+                    <div id="num_pad">
+                    </div>
+                    <div id="operation_pad">
+                        <input type="button" id="plus">
+                        <input type="button" id="minus">
+                        <input type="button" id="multiply">
+                        <input type="button" id="division">
+                        <input type="button" id="C">
+                    </div>
+                </fieldset>
+            </form>
+        </body>
+    </html>

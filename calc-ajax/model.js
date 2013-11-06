@@ -21,7 +21,7 @@ function Calculator () {
     this.division = function ( oper1, oper2 ) {
         var my_ajax = new Ajax ();
         if(oper2 == 0) {
-            document.getElementById( "" ).value = "Error division by zero";
+            document.getElementById( "result_input" ).value = "Error division by zero";
         }else {
             my_ajax.ajaxDialogue( oper1, oper2, "http://test1.ru/div.php");
         }

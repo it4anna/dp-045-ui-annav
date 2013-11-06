@@ -21,7 +21,7 @@ function Ajax () {
             }
         };
         dialogue.open("GET", uri + "?operand1=" + oper1+ "&operand2="+ oper2, true);
-        dialogue.onreadystatechange
+        dialogue.onreadystatechange = success;
         dialogue.send();
     };
    return this;
