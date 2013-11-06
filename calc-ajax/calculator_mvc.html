@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+    <html>
+        <head>
+            <title>Calculator</title>
+            <meta charset="UTF-8">
+            <script src = "ajax.js"></script>
+            <script  src = "model_mvc.js"></script>
+            <script  src = "controller_mvc.js"></script>
+            <script  src = "view_mvc.js"></script>
+            <script  src = "run_mvc.js"></script>
+            <link  rel = "stylesheet"  type = "text/css"  href = "my_style.css" >
+        </head>
+        <body>
+            <form id="calculator">
+                <fieldset>
+                    <div id="text_pad">
+                        <label for="first_value"></label>
+                        <input type="text" id="first_value" value="" />
+                        <label for="second_value"></label>
+                        <input type="text" id="second_value" value="" />
+                        <label for="result_input"></label>
+                        <input type="text" id="result_input" value="" />
+                    </div>
+                    <div id="num_pad">
+                    </div>
+                    <div id="operation_pad">
+                        <input type="button" id="plus">
+                        <input type="button" id="minus">
+                        <input type="button" id="multiply">
+                        <input type="button" id="division">
+                        <input type="button" id="C">
+                    </div>
+                </fieldset>
+            </form>
+        </body>
+    </html>
