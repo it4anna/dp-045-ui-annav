@@ -11,7 +11,7 @@ function Controller () {
 
 
     callback = function ( result_value ) {
-        result = result_value;
+        result.value = result_value;
     };
 
     this.setField1 = function () {
