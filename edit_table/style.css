@@ -1,7 +1,22 @@
 #control_panel{
-background-color: beige;
+    background-color: lightsalmon;
+    text-align: center;
+    position: relative;
+    margin: 0 auto;
 }
 
-#table_container{
-    background-color: cadetblue;
+#extensible_table{
+    background-color: #ffcc99;
+    margin:0 auto;
+}
+
+
+.contBtnDiv {
+    background-color: lightsalmon;
+    width:110px;
+    height:100px;
+    float:left;
+    margin-left:80px;
+    text-align:center;
+
 }
