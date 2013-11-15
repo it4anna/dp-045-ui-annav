@@ -39,7 +39,7 @@ input[name=btn]{
     float:left;
 }
 
-#plus,#minus,#multiply,#division,#C{
+#plus,#minus,#multiply,#divide,#C{
     background-color: white;
     border-radius:5px;
 }

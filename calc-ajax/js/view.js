@@ -7,9 +7,10 @@ function View () {
         addEvents;
 
     addNumbBtn = function() {
-        var i = 1;
+        var i = 1,
+            btn_quantity = 10;
 
-        while (i < 10) {
+        while (i < btn_quantity) {
             var btn = document.createElement( "input" );
             btn.type = "button";
             btn.id = "btn" + i;
@@ -30,12 +31,10 @@ function View () {
 
 
     addOperBtnValues =  function () {
-//        console.log( "view.addOperBtnValues()" );
-
         document.getElementById( "plus" ).value = "+";
         document.getElementById( "minus" ).value = "-";
         document.getElementById( "multiply" ).value = "*";
-        document.getElementById( "division" ).value = "/";
+        document.getElementById( "divide" ).value = "/";
         document.getElementById( "C" ).value = "C";
     };
 
@@ -47,7 +46,7 @@ function View () {
         document.getElementById( "plus" ).addEventListener( "click", my_controller.plus, false );
         document.getElementById("minus").addEventListener("click",my_controller.minus,false);
         document.getElementById("multiply").addEventListener("click",my_controller.multiply,false);
-        document.getElementById("division").addEventListener("click",my_controller.division,false);
+        document.getElementById("divide").addEventListener("click",my_controller.divide,false);
 
         document.getElementById("C").addEventListener("click",my_controller.erase,false);
     };
