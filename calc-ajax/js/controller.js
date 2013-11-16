@@ -6,12 +6,13 @@ function Controller () {
         operand1 = document.getElementById( "first_value" ),
         operand2 = document.getElementById( "second_value" ),
         callback,
-        result = document.getElementById( "result_input" );
+        result_input = document.getElementById( "result_input" );
 
 
 
     callback = function ( result ) {
-        result.value = result;
+		console.log(result);
+//        result_input.value = result;
     };
 
     this.setField1 = function () {
@@ -36,7 +37,7 @@ function Controller () {
     this.erase = function () {
         operand1.value = "";
         operand2.value = "";
-        result.value = "";
+        result_input.value = "";
 
     };
 
