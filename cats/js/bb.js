@@ -31,7 +31,11 @@ CatsCollection = Backbone.Collection.extend({
 
 
 CatView = Backbone.View.extend({
+<<<<<<< HEAD
 //	el: $("#cats_action"), //error then the live in $(function(){})
+=======
+
+>>>>>>> d3ebea1235031fe62aeed580b4a9c458cff75147
     cats_collection : new CatsCollection(),
     events: {
         "click #show": "showCats",
