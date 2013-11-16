@@ -1,15 +1,15 @@
 "use strict";
-//model:
-function Watch () {
-    console.log ( "new Watch (model)" );
+
+function Watch() {
+//    console.log( "new Watch (model)" );
     var format_time = {};
 
-    function toDouble ( str ) {
+    function toDouble( str ) {
         return ( str.length < 2 ) ? "0"+str : str;
     }
 
 
-    format_time.left_click = function () {
+    format_time.left_click = function() {
         var curr_date = new Date (),
             hour = String( curr_date.getHours() ),
             min = String( curr_date.getMinutes() ),
@@ -20,7 +20,7 @@ function Watch () {
     };
 
 
-    format_time.right_click = function () {
+    format_time.right_click = function() {
         var curr_date = new Date (),
             yy = String( curr_date.getFullYear() ).substr( 2 ),
             mm = String( 1 + curr_date.getMonth() ),
@@ -31,20 +31,21 @@ function Watch () {
     };
 
 
-    format_time.by_default = function () {
+    format_time.by_default = function() {
         var curr_date = new Date (),
-            hour = String(curr_date.getHours()),
-            min = String(curr_date.getMinutes()),
-            hh_mm = toDouble(hour) + ":" + toDouble(min);
+            hour = String( curr_date.getHours() ),
+            min = String( curr_date.getMinutes() ),
+            hh_mm = toDouble( hour ) + ":" + toDouble( min );
 
         return hh_mm;
     };
 
 
-    this.getFormatedTime = function ( format ) {
-        var time = format_time[format]();
+    this.getFormatedTime = function( format ) {
+        var time = format_time[ format ]();
         return  time;
     };
+
 
     return this;
 }
