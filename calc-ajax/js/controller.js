@@ -1,7 +1,8 @@
 "use strict";
+
 function Controller () {
 
-    var myCalc = new Calculator(),
+    var calc = new Calculator(),
         operand = "",
         operand1 = document.getElementById( "first_value" ),
         operand2 = document.getElementById( "second_value" ),
@@ -11,8 +12,7 @@ function Controller () {
 
 
     callback = function ( result ) {
-		console.log(result);
-//        result_input.value = result;
+        result_input.value = result;
     };
 
     this.setField1 = function () {
@@ -43,19 +43,22 @@ function Controller () {
 
 
     this.plus = function () {
-        myCalc.plus( Number(operand1.value), Number(operand2.value), callback );
+        calc.plus( Number(operand1.value), Number(operand2.value), callback );
     };
 
-    this.minus = function () {
-        myCalc.minus( Number(operand1.value), Number(operand2.value), callback );
+
+    this.min = function () {
+        calc.min( Number(operand1.value), Number(operand2.value), callback );
     };
 
-    this.multiply = function () {
-        myCalc.multiply( Number(operand1.value), Number(operand2.value), callback );
+
+    this.mult = function () {
+        calc.mult( Number(operand1.value), Number(operand2.value), callback );
     };
 
-    this.divide = function () {
-        myCalc.devide( Number(operand1.value), Number(operand2.value), callback );
+
+    this.div = function () {
+        calc.div( Number(operand1.value), Number(operand2.value), callback );
     };
 
 
