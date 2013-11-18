@@ -1,8 +1,8 @@
 "use strict";
 
 window.onload = function() {
-    var view = new View();
+    var my_view = new View();
 
-    view.init();
+    my_view.init();
 };
 
