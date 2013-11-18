@@ -1,8 +1,8 @@
 "use strict";
 
-function Model_table() {
 
-    function newTd( value ) { // create new td element
+function Model_table() {
+    function createTd( value ) {
         var td;
 
         td = document.createElement( "td" );
@@ -11,41 +11,68 @@ function Model_table() {
         return td;
     }
 
-    function newRow ( td_qty, value ) { //create new row
+
+    function createRow ( td_qty, value ) {
         var tr = document.createElement ( "tr" );
 
         while ( td_qty -- ) {
-        $( tr ).append( newTd( value ) );
+        $( tr ).append( createTd( value ) );
         }
 
         return tr;
     }
 
-    function getCenterTd ( child, index ) {  //return center cell
-        var i ;
-        for ( i = 0; i <= index; i++ ) {
+
+    function getCenterTd ( child, index ) {
+        while ( index >0 ) {
             child = child.nextSibling;
+            index --;
         }
         return child;
     }
 
 
+    function isLastCell() {
+        var last = 0,
+            cells_quantity =$("tr").toArray().length / $("td").toArray().length;   //per row
+            if (cells_quantity === 1) {
+                last = 1;
+                console.log("You can't remove last cell");
+            }
+
+        return last;
+    }
+
+
+    function isLastRow() {
+        var last = 0,
+            rows_quantity = $("td").toArray().length;
+        if (rows_quantity === 1) {
+            last = 1;
+            console.log("You can't remove last row");
+        }
+
+        return last;
+    }
+
+
     this.addCellFirst = function() {
-        var rows = $( "tr" ), //object of rows
+        var rows = $( "tr" ).toArray(), //object of rows
             i = 0;
 
         while( rows[ i ] ){ //until the row is exists
-            $( rows[ i ] ).prepend( newTd( "first Cell" ) ); // add new td in every row
+            $( rows[ i ] ).prepend( createTd( "first Cell" ) ); // add new td in every row
             i++;
         }
     };
+
 
     this.addCellLast = function() {
         var rows =  $( "tr" ),    //object of rows
             i = 0;
 
         while( rows[ i ] ){    //until the row is exists
-            $( rows[ i ] ).append( newTd( "last Cell" ) ); // add new td in every row
+            $( rows[ i ] ).append( createTd( "last Cell" ) ); // add new td in every row
             i++;
         }
     };
@@ -65,7 +92,7 @@ function Model_table() {
         while( rows[ i ] ) {
             first_td = rows[ i ].firstChild;
             child = getCenterTd ( first_td, center );
-            $( child ).after( newTd( "center Cell" ) );
+            $( child ).after( createTd( "center Cell" ) );
             i ++;
         }
 
@@ -75,7 +102,9 @@ function Model_table() {
     this.removeCellFirst = function() {
         var rows = $( "tr" ), //object of rows
             i = 0;
-
+        if (isLastCell()) {
+            return;
+        }
         while( rows[ i ] ){ //until the row is exists
             $( rows[ i ].firstChild ).remove(); // add new td in every row
             i ++;
@@ -86,6 +115,10 @@ function Model_table() {
     this.removeCellLast = function() {
         var rows = $( "tr" ), //object of rows
             i = 0;
+
+        if (isLastCell()) { //don't remove if last cell
+            return;
+        }
 
         while( rows[ i ] ){ //until the row is exists
             $( rows[ i ].lastChild).remove(); // add new td in every row
@@ -104,7 +137,10 @@ function Model_table() {
             first_td,
             i = 0,
             child;
-//        console.log("rows_quantity= "+ rows_quantity + "center cell index= " + center);
+
+        if (isLastCell()) {      //don't remove if last row
+            return;
+        }
 
         while( rows[ i ] ) {
             first_td = rows[ i ].firstChild;
@@ -122,7 +158,8 @@ function Model_table() {
             cells_quantity = cells.size(),
             cells_per_row = cells_quantity / rows_quantity,
             tr;
-        tr =  newRow ( cells_per_row, "First Row" );  //create new row
+
+        tr =  createRow ( cells_per_row, "First Row" );  //create new row
         $( rows[ 0 ] ).before( tr );  //adds the row in table
     };
 
@@ -134,13 +171,13 @@ function Model_table() {
             cells_quantity = cells.size(),
             cells_per_row = cells_quantity / rows_quantity,
             tr;
-        tr = newRow ( cells_per_row, "Last Row" ); //create new row
+
+        tr = createRow ( cells_per_row, "Last Row" ); //create new row
         $( rows[ rows_quantity - 1 ] ).after( tr ); //adds the row in table
     };
 
 
     this.addRowCenter = function() {
-
         var rows = $( "tr" ).toArray(),
             rows_quantity = rows.length,
             cells = $( "td" ),
@@ -149,7 +186,7 @@ function Model_table() {
             center = ( Math.floor ( ( rows_quantity  / 2 ) ) - 1 ), //index of center element
             new_tr;
 
-        new_tr = newRow ( cells_per_row, "Center Row" ); //create row
+        new_tr = createRow ( cells_per_row, "Center Row" ); //create row
         $( rows[ center ] ).after( new_tr ); //insert the row in center
 
     };
@@ -158,6 +195,10 @@ function Model_table() {
     this.removeRowFirst = function () {
         var rows = $( "tr" ).toArray(); //array of rows
 
+        if ( isLastRow() ) {    //don't remove if last row
+            return;
+        }
+
         $( rows[ 0 ] ).remove();
     };
 
@@ -165,6 +206,10 @@ function Model_table() {
     this.removeRowLast = function () {
         var rows = $( "tr" ).toArray(), //array of rows
             length = $( rows ).size();
+
+        if ( isLastRow() ) {  //don't remove if last row
+            return;
+        }
 
         $( rows[ length - 1 ] ).remove();
     };
@@ -175,8 +220,11 @@ function Model_table() {
             length = $( rows ).size(),
             center = Math.floor( ( (length / 2 ) ) );
 
-        $( rows[ center ] ).remove();
+        if ( isLastRow() ) {   //don't remove if last row
+            return;
+        }
 
+        $( rows[ center ] ).remove();
     };
 
     return this;
