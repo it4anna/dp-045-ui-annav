@@ -1,0 +1,20 @@
+.sticker_div{
+    width: 200px;
+    height: 200px;
+    background-color: papayawhip;
+    text-align: center;
+    font-size: 180%;
+    float: left;
+    margin: 20px;
+}
+#stickers{
+    background-color: purple;
+    position: relative;
+    float: left;
+    width: 80%;
+    height: 380px;
+    padding: 20px;
+    font-size: 20px;
+    color: white;
+    text-align: center;
+}
