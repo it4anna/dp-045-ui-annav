@@ -1,7 +1,7 @@
 $( function() {
         var Sticker = Backbone.Model.extend( {
                 defaults: {
-                    stc_text : "Enter text here..."
+                    stc_text : "Change me"
                 }
             } ),
 
