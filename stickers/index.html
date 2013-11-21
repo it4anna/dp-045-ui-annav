@@ -12,15 +12,20 @@
 
                 <script src = "js/stickers.js"></script>
 
+ <!--              <script src = "js/Model.js"></script>
+                <script src = "js/ModelView.js"></script>
+                <script src = "js/ModelCollection.js"></script>
+                <script src = "js/CollectionViev.js"></script>
+                <script src = "js/run.js"></script>
+
+-->
                 <script type = "text/html" id = "sticker_tpl"><br>
                    <div class="sticker_div" >
-                       <%= stc_text %>
+                       <%= stc_text %> <%= x %> <%= y %>
                    </div>
                 </script>
             </head>
             <body>
-                <div id = "stickers" >Click on the area, to see stickers
-<!--                    <input type = "text" id = "input_text"> -->
-                </div>
+                <div id = "stickers" >Click on the area, to create new sticker</div>
             </body>
         </html>
