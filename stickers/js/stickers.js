@@ -42,7 +42,7 @@ $( function() {
 
             change: function(e) {
                 e.stopPropagation();
-                var new_text = prompt( "Enter text to save", "new text" );
+                var new_text = prompt( "Enter text to save", this.model.get("stc_text") );
                 this.model.set( { "stc_text": new_text } );
                 this.render();
                 }
