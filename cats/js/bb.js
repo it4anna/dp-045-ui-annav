@@ -1,70 +1,59 @@
-CatModel = Backbone.Model.extend({
+$(function (){
 
-    initialize : function (name, color){
-        this.name = name;
-        this.color = color;
-    },
-    run : function() {
-        return "Scared cat "+ this.name + " in running...";
+var Cat = Backbone.Model.extend({
+    defaults: {
+        name : "undefined",
+        color : "undefined"
     }
-});
+    }),
 
 
 
 CatsCollection = Backbone.Collection.extend({
-    model : CatModel,
-
-    showCats: function (callback){
-       this.each (function(cat_model){
-    	   callback( cat_model.color + " " + cat_model.name);
-        })
+    initialize: function() {
+        this.add(new Cat({"name": "Murka", "color": "white"}));
+        this.add(new Cat({"name": "Murzik", "color": "grey"}));
+        this.add(new Cat({"name": "Barsic", "color": "green"}));
     },
 
+    model : Cat
+}),
 
-    scareCats: function (callback){
-        this.each (function(cat_model){
-            callback(cat_model.run());
-        })
+
+    CatView = Backbone.View.extend({
+    className: "cat",
+
+    template: _.template($("#kitty_tpl").html()),
+
+    render: function() {
+        this.$el.html(this.template(this.model.toJSON()));
+        return this;
     }
-});
+}),
 
+    CatCollectionView = Backbone.View.extend({
+        initialize: function() {
+            this.collection = new CatsCollection();
+        },
 
+        el: $("#cats_action"),
 
-CatView = Backbone.View.extend({
-<<<<<<< HEAD
-//	el: $("#cats_action"), //error then the live in $(function(){})
-=======
+        events: {
+            "click": "render"
+        },
 
->>>>>>> d3ebea1235031fe62aeed580b4a9c458cff75147
-    cats_collection : new CatsCollection(),
-    events: {
-        "click #show": "showCats",
-        "click #scare": "scareCats"
-    },
+        addCat: function(cat) {
+            var view = new CatView({model: cat});
+            this.$el.append(view.render().el);
+        },
 
-    render : function(result) {
-        console.log(result);
- //       this.$el.find("#cats_container").html("<span>"+result+"</span>");   // el is undefined! :((
+        render: function() {
+            this.$el.html("");
+            this.collection.each(this.addCat, this);
+        }
+    }),
 
-
-    },
-
-    scareCats: function (){
-        this.cats_collection.scareCats(this.render);
-    },
-
-    showCats: function (){
-        this.cats_collection.showCats(this.render);
-    }
-});
-
-
-$(function (){
-    var my_view = new CatView ({"el": $("#cats_action")});
-	my_view.cats_collection.add(new CatModel("Murka", "white"));
-	my_view.cats_collection.add(new CatModel("Murzik", "grey"));
-	my_view.cats_collection.add(new CatModel("Barsic", "green"));
-	
+        my_view = new CatCollectionView ();
 });
 
 
