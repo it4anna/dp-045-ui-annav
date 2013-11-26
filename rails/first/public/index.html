@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+    <html>
+        <head>
+            <title>::: Backbone (first look) :::</title>
+            <meta charset="UTF-8">
+			
+<!--			<script>      function about() {
+        var info = document.getElementById('cats_action'),
+            xhr;
+
+        if (info.innerHTML === '') {
+          xhr = new XMLHttpRequest();
+          xhr.open("GET", "cats.json", false);
+          xhr.setRequestHeader("X-Requested-With", "XMLHttpRequest");
+          xhr.send("");
+          info.innerHTML = xhr.responseText;
+        }
+
+        info.style.display = info.style.display === 'none' ? 'block' : 'none';
+      }
+	  </script>
+	  -->
+	  
+            <script src = "js/jquery.js"></script>
+            <script src = "js/underscore.js"></script>
+            <script src = "js/backbone.js"></script>
+            <script src = "js/bb.js"></script> 
+
+            <script type = "text/html" id = "kitty_tpl">
+                There is <%= color %> cat  <%= name %>, his id = <%= id %>!
+            </script>
+        </head>
+        <body>
+            <div id = "cats_action">
+                Click here to see cats
+            </div>
+        </body>
+    </html>
