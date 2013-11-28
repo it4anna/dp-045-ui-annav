@@ -1,0 +1,74 @@
+// Place all the styles related to the stickers controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+.sticker{
+    background-color: papayawhip;
+    font-size: 15px;
+	font-family: arial, sans-serif;
+    font-style: normal;
+
+    color: purple;
+    text-align: center;
+    height: 180px;
+    width: 180px;
+    padding: 10px;
+    position:relative;
+
+    -o-transform:rotate(1deg);
+    -webkit-transform:rotate(1deg);
+    -moz-transform:rotate(1deg);
+
+    -moz-box-shadow: 5px 5px 7px rgba(33, 33, 33, 1); 
+    -webkit-box-shadow: 5px 5px 7px rgba(33, 33, 33, 7);
+    box-shadow: 5px 5px 7px rgba(33, 33, 33, 7);
+
+}
+
+#stickers_container :nth-child(2n) {
+    -o-transform:rotate(4deg);
+    -webkit-transform:rotate(4deg);
+    -moz-transform:rotate(4deg);
+
+    top:5px;
+}
+#stickers_container  :nth-child(3n) {
+    -o-transform:rotate(-3deg);
+    -webkit-transform:rotate(-3deg);
+    -moz-transform:rotate(-3deg);
+    top:-5px;
+}
+#stickers_container :nth-child(5n) {
+    -o-transform:rotate(5deg);
+    -webkit-transform:rotate(5deg);
+    -moz-transform:rotate(5deg);
+
+    top:-10px;
+}
+
+.sticker:hover {
+
+    font-style: oblique;
+    -moz-box-shadow:10px 10px 7px rgba(0,0,0,.7);
+    -webkit-box-shadow: 10px 10px 7px rgba(0,0,0,.7);
+    box-shadow:10px 10px 7px rgba(0,0,0,.7);
+
+    -moz-transition: prop time;
+    -ms-transition: prop time;
+    -o-transition: prop time;
+    transition: prop time;
+
+    -webkit-transform:  scale(5);
+    -moz-transform: scale(5);
+    -o-transform: scale(5);
+
+    z-index:5;
+}
+
+
+#stickers_container{
+    background-color: purple;
+    height: 600px;
+    font-size: 20px;
+    color: white;
+
+}

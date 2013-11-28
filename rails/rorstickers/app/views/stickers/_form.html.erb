@@ -1,0 +1,29 @@
+<%= form_for(@sticker) do |f| %>
+  <% if @sticker.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@sticker.errors.count, "error") %> prohibited this sticker from being saved:</h2>
+
+      <ul>
+      <% @sticker.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :stc_text %><br />
+    <%= f.text_field :stc_text %>
+  </div>
+  <div class="field">
+    <%= f.label :x %><br />
+    <%= f.number_field :x %>
+  </div>
+  <div class="field">
+    <%= f.label :y %><br />
+    <%= f.number_field :y %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

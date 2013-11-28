@@ -1,0 +1,4 @@
+_.templateSetting = {
+	interpolate : /<\?=(.+?)/ ,
+	evaluate : /<? (+?)\?>/
+}
