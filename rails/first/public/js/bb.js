@@ -13,15 +13,12 @@ var Cat = Backbone.Model.extend({
 
 CatsCollection = Backbone.Collection.extend({
     initialize: function() {
- /*       this.add(new Cat({"name": "Murka", "color": "white"}));
-        this.add(new Cat({"name": "Murzik", "color": "grey"}));
-        this.add(new Cat({"name": "Barsic", "color": "green"}));
-		*/	
+
 		this.fetch();
       },
 	  
     model : Cat,
-	url: "/cats"
+	url: "/cats.json"   //works the same way url: "/cats"
 	
 	
 }),
