@@ -1,46 +1,50 @@
-$(function (){
+"use stict";
 
-    var MenuItem = Backbone.Model.extend( { // Do we need: units for weight, and type of valute for price
+
+$(function() {
+
+    var Item = Backbone.Model.extend( {
 //        initialize: function(){console.log("new model")},
             defaults: { //if defaults is needs, when next element doesn't render
-                category : "undefined",
-                name : "undefined",
-                desc : "undefined",
-                weight : "undefined",
-                price : "undefined",
-                id : "undefined"
+                category_id : "N/A",
+                name : "N/A",
+                desc : "N/A",
+                price : "N/A",
+				id : "N/A"
             }
         } ),
 
 
-
-        MenuItemsCollection = Backbone.Collection.extend({
+        ItemsCollection = Backbone.Collection.extend( {
             initialize: function() {
-                this.add(new MenuItem({ "category": "Drinks", "name": "Pinacolada", "desc": "yummy", "weight": "100ml", "price": "5", "id": "0"}));
-                this.add(new MenuItem({ "category": "Cold collation", "name": "Cassoulet", "desc": "Pork, mutton, veal", "weight": "200/200/100 gr", "price": "4", "id": "1"}));
-                this.add(new MenuItem({ "category": "Cold collation", "name": "Cheese", "desc": "tru lu la", "weight": "50/50/50/50", "price": "10", "id": "2"}));
-                this.add(new MenuItem({ "category": "First course", "name": "Soup", "desc": "some ingredients", "weight": "250 ml", "price": "10", "id": "3"}));
-                this.add(new MenuItem({ "category": "Drinks", "name": "B-52", "weight": "100ml", "price": "3"}));
+//				this.fetch();
+                this.add( new Item( { "category": "Drinks", "name": "Pinacolada", "desc": "yummy", "price": "5", "id": "0"} ) );
+                this.add( new Item( { "category": "Cold collation", "name": "Cassoulet", "desc": "Pork, mutton, veal",  "price": "4", "id": "1"} ) );
+                this.add( new Item( { "category": "Cold collation", "name": "Cheese", "desc": "tru lu la", "price": "10", "id": "2"} ));
+                this.add( new Item( { "category": "First course", "name": "Soup", "desc": "some ingredients", "price": "10", "id": "3"} ) );
+                this.add( new Item( { "category": "Drinks", "name": "B-52", "price": "3"}));
             },
 
-            model : MenuItem
-        }),
+            model : Item//,
+//			url: items
+        } ),
 
 
-        MenuItemView = Backbone.View.extend({
+        ItemView = Backbone.View.extend( {
+			tagName: 'div',
             className: "menu_item",
-
-            template: _.template($("#item_tpl").html()),
+            template: _.template( $( "#item_tpl" ).html() ),
 
             render: function() {
-                this.$el.html(this.template(this.model.toJSON()));
+                this.$el.html( this.template( this.model.toJSON() ) );
                 return this;
             }
         }),
 
-        MenuItemCollectionView = Backbone.View.extend({
+		
+        ItemCollectionView = Backbone.View.extend({
             initialize: function() {
-                this.collection = new MenuItemsCollection();
+                this.collection = new ItemsCollection();
             },
 
             el: $("#items_cnt"),
@@ -49,20 +53,19 @@ $(function (){
                 "click": "render"
             },
 
-            addMenuItem: function(menu_item) {
-                console.log("render item");
-                var view = new MenuItemView({model: menu_item});
-                this.$el.append(view.render().el);
+            addItem: function( item ) {
+                var view = new ItemView( {model: item} );
+                this.$el.append( view.render().el );
             },
 
             render: function() {
-                console.log("render items");
-                this.$el.html(":::Items:::");
-                this.collection.each(this.addMenuItem, this);
+                this.$el.html( ":::Items:::" );
+                this.collection.each( this.addItem, this );
             }
         }),
+		
 
-        app = new MenuItemCollectionView ();
+        app = new ItemCollectionView();
 });
 
 
