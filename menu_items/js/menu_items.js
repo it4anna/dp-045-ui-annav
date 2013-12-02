@@ -68,16 +68,16 @@ $(function() {
             },
 
             render: function() {
-                var one_collection = this.collection.where ({category: "Dricks"}),
-                    new_collection = new PropItemsCollection();
+                var prop_items_hash = this.collection.where ({category: "Dricks"}),
+                    prop_collection = new PropItemsCollection();
 
-                for (var i= 0; i < one_collection.length; i++)
+                for (var i= 0; i < prop_items_hash.length; i++)
                 {
-                    new_collection.add (one_collection[i]);
+                    prop_collection.add (prop_items_hash[i]);
                 }
 
                 this.$el.html( ":::Items:::" );
-                new_collection.each( this.addItem, this );
+                prop_collection.each( this.addItem, this );
             }
         }),
 
