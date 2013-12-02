@@ -48,10 +48,10 @@ $(function() {
         });
 
 
-        ItemCollectionView = Backbone.View.extend({
+        ItemCollectionView = Backbone.View.extend( {
             initialize: function() {
                 this.collection = new ItemsCollection();
-                console.log(this.collection);
+                console.log( this.collection );
             },
 
 //            el: $("#container"),
@@ -62,19 +62,20 @@ $(function() {
 */
             addItem: function( item ) {
                 var view = new ItemView( {model: item} );
-                var key = item.get("category"),
+                var key = item.get( "category" ),
                 element = this.key;
-                console.log(key1);
-                this.$(element).append( view.render().el );
+ //               console.log( key1 );
+                this.$( element ).append( view.render().el );
             },
 
-            render: function(hash) {
+            render: function() {
+			console.log( arguments[0] );
 //               this.$el.html( "" );
-                this.collection.each( this.addItem, hash); //collection undefined :-(((
+                this.collection.each( this.addItem, arguments[0] ); //collection undefined :-(((
             }
         });
 
 
     app = new ItemCollectionView();
-    Backbone.Mediator.sub("categories-ready", app.render);
+    Backbone.Mediator.sub( "categories-ready", app.render );
 });
