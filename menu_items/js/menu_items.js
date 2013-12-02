@@ -1,4 +1,4 @@
-"use stict";
+"use strict";
 
 
 $(function() {
@@ -6,32 +6,41 @@ $(function() {
     var Item = Backbone.Model.extend( {
 //        initialize: function(){console.log("new model")},
             defaults: { //if defaults is needs, when next element doesn't render
-                category_id : "N/A",
+                category : "N/A",
                 name : "N/A",
                 desc : "N/A",
-                price : "N/A",
-				id : "N/A"
+                price : "N/A"//,
+               // id : "N/A"
             }
         } ),
 
 
         ItemsCollection = Backbone.Collection.extend( {
             initialize: function() {
-//				this.fetch();
-                this.add( new Item( { "category": "Drinks", "name": "Pinacolada", "desc": "yummy", "price": "5", "id": "0"} ) );
-                this.add( new Item( { "category": "Cold collation", "name": "Cassoulet", "desc": "Pork, mutton, veal",  "price": "4", "id": "1"} ) );
-                this.add( new Item( { "category": "Cold collation", "name": "Cheese", "desc": "tru lu la", "price": "10", "id": "2"} ));
-                this.add( new Item( { "category": "First course", "name": "Soup", "desc": "some ingredients", "price": "10", "id": "3"} ) );
-                this.add( new Item( { "category": "Drinks", "name": "B-52", "price": "3"}));
+//                                this.fetch();
+                this.add( new Item( { "category": "Dricks", "name": "Capuccino", "desc": "yummy", "price": "5"} ) );
+                this.add( new Item( { "category": "Dessetrs", "name": "Ice Cream", "desc": "Pork, mutton, veal",  "price": "4"} ) );
+                this.add( new Item( { "category": "Dessetrs", "name": "Cream Pie", "desc": "Pork, mutton, veal",  "price": "4"} ) );
+                this.add( new Item( { "category": "Entrees", "name": "Soup", "desc": "tru lu la", "price": "10", "id": "2"} ));
+                this.add( new Item( { "category": "Dricks", "name": "Esspreso", "desc": "yummy", "price": "5"} ) );
+                this.add( new Item( { "category": "Sides", "name": "Cheese", "desc": "some ingredients", "price": "10"} ) );
+                this.add( new Item( { "category": "Bar", "name": "Mochitto", "desc": "some ingredients", "price": "3"}));
+                this.add( new Item( { "category": "Bar", "name": "Green Mexican","desc": "some ingredients", "price": "5"}));
+                this.add( new Item( { "category": "Bar", "name": "B-52", "desc": "some ingredients", "price": "3"}));
             },
 
             model : Item//,
-//			url: items
+//                        url: items
+        } ),
+
+        PropItemsCollection = Backbone.Collection.extend( {
+            model : Item//,
+//                        url: items
         } ),
 
 
         ItemView = Backbone.View.extend( {
-			tagName: 'div',
+            tagName: 'div',
             className: "menu_item",
             template: _.template( $( "#item_tpl" ).html() ),
 
@@ -41,13 +50,13 @@ $(function() {
             }
         }),
 
-		
+
         ItemCollectionView = Backbone.View.extend({
             initialize: function() {
                 this.collection = new ItemsCollection();
             },
 
-            el: $("#items_cnt"),
+            el: $("#container"),
 
             events: {
                 "click": "render"
@@ -59,14 +68,19 @@ $(function() {
             },
 
             render: function() {
+                var one_collection = this.collection.where ({category: "Dricks"}),
+                    new_collection = new PropItemsCollection();
+
+                for (var i= 0; i < one_collection.length; i++)
+                {
+                    new_collection.add (one_collection[i]);
+                }
+
                 this.$el.html( ":::Items:::" );
-                this.collection.each( this.addItem, this );
+                new_collection.each( this.addItem, this );
             }
         }),
-		
+
 
         app = new ItemCollectionView();
 });
-
-
-
