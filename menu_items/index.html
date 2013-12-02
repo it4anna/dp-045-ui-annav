@@ -2,6 +2,7 @@
     <html>
         <head>
             <title></title>
+            <meta charset="UTF-8">
             <link rel = "stylesheet" href = "css/css.css">
 
             <script src = "js/json2.js"></script>
@@ -12,9 +13,8 @@
             <script src = "js/backbone-localstorage.js"></script>
 
             <script src = "js/menu_items.js"></script>
-            <script src = "js/menu_categories.js"></script>
+            <!--<script src = "js/menu_categories.js"></script>-->
            <!--<script src = "js/run.js"></script>-->
-
 
             <script type = "text/html" id = "item_tpl"><br>
                    <span class = "menu_item" >
@@ -26,16 +26,27 @@
                    </span>
                 </script>
 
+<!--
             <script type = "text/html" id = "category"><br>
                    <div class = "category-container" >
                        Category_name: <%= category_name %>
                    </div>
                 </script>
+-->
 
 
         </head>
         <body>
-        <div id = "menu-container">Menu:</div>
-        <div id = "container">items</div>
+            <button type = "button" id="publish">Add Items</button>
+            <div id = "container">items</div>
+
+
+            <script>
+                $( "#publish" ).click(function() {
+                    console.log( "publish" );
+                    var el = $("#container");
+                    Backbone.Mediator.pub("categories-ready", {"Drinks": el, "Deserts": el, "Entrees": el, "Bar": el, "Sides" : el });
+                });
+             </script>
         </body>
 </html>

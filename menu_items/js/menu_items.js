@@ -2,17 +2,19 @@
 
 
 $(function() {
+    var Item,ItemsCollection, ItemView, ItemCollectionView, app;
 
-    var Item = Backbone.Model.extend( {
+
+    Item = Backbone.Model.extend( {
 //        initialize: function(){console.log("new model")},
-            defaults: { //if defaults is needs, when next element doesn't render
+            defaults: {
                 category : "N/A",
                 name : "N/A",
                 desc : "N/A",
                 price : "N/A"//,
                // id : "N/A"
             }
-        } ),
+        } );
 
 
         ItemsCollection = Backbone.Collection.extend( {
@@ -31,12 +33,7 @@ $(function() {
 
             model : Item//,
 //                        url: items
-        } ),
-
-        PropItemsCollection = Backbone.Collection.extend( {
-            model : Item//,
-//                        url: items
-        } ),
+        } );
 
 
         ItemView = Backbone.View.extend( {
@@ -48,39 +45,36 @@ $(function() {
                 this.$el.html( this.template( this.model.toJSON() ) );
                 return this;
             }
-        }),
+        });
 
 
         ItemCollectionView = Backbone.View.extend({
             initialize: function() {
                 this.collection = new ItemsCollection();
+                console.log(this.collection);
             },
 
-            el: $("#container"),
-
+//            el: $("#container"),
+/*
             events: {
                 "click": "render"
             },
-
+*/
             addItem: function( item ) {
                 var view = new ItemView( {model: item} );
-                this.$el.append( view.render().el );
+                var key = item.get("category"),
+                element = this.key;
+                console.log(key1);
+                this.$(element).append( view.render().el );
             },
 
-            render: function() {
-                var prop_items_hash = this.collection.where ({category: "Dricks"}),
-                    prop_collection = new PropItemsCollection();
-
-                for (var i= 0; i < prop_items_hash.length; i++)
-                {
-                    prop_collection.add (prop_items_hash[i]);
-                }
-
-                this.$el.html( ":::Items:::" );
-                prop_collection.each( this.addItem, this );
+            render: function(hash) {
+//               this.$el.html( "" );
+                this.collection.each( this.addItem, hash); //collection undefined :-(((
             }
-        }),
+        });
 
 
-        app = new ItemCollectionView();
+    app = new ItemCollectionView();
+    Backbone.Mediator.sub("categories-ready", app.render);
 });
