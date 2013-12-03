@@ -16,14 +16,11 @@
             <!--<script src = "js/menu_categories.js"></script>-->
            <!--<script src = "js/run.js"></script>-->
 
-            <script type = "text/html" id = "item_tpl"><br>
-                   <span class = "menu_item" >
+            <script type = "text/html" id = "item_tpl">
                        Category: <%= category %> &nbsp;
                        Name: <%= name %> &nbsp;
                        Description: <%= desc %> &nbsp;
                        Price: <%= price %> &nbsp;
-
-                   </span>
                 </script>
 
 <!--
@@ -38,14 +35,16 @@
         </head>
         <body>
             <button type = "button" id="publish">Add Items</button>
-            <div id = "container">items</div>
+            <div id = "Drinks1">Drinks</div>
+            <div id = "Desserts1">Desserts</div>
+            <div id = "Entrees1">Entrees</div>
+            <div id = "Bar1">Bar</div>
+            <div id = "Sides1">Sides</div>
 
 
             <script>
                 $( "#publish" ).click(function() {
-                    console.log( "publish" );
-                    var el = $("#container");
-                    Backbone.Mediator.pub("categories-ready", {"Drinks": el, "Deserts": el, "Entrees": el, "Bar": el, "Sides" : el });
+                    Backbone.Mediator.pub("categories-ready", {"Drinks": $("#Drinks1"), "Desserts": $("#Desserts1"), "Entrees": $("#Entrees1"), "Bar": $("#Bar1"), "Sides" : $("#Sides1") });
                 });
              </script>
         </body>

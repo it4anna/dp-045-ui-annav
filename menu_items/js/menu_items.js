@@ -6,7 +6,6 @@ $(function() {
 
 
     Item = Backbone.Model.extend( {
-//        initialize: function(){console.log("new model")},
             defaults: {
                 category : "N/A",
                 name : "N/A",
@@ -19,12 +18,12 @@ $(function() {
 
         ItemsCollection = Backbone.Collection.extend( {
             initialize: function() {
-//                                this.fetch();
-                this.add( new Item( { "category": "Dricks", "name": "Capuccino", "desc": "yummy", "price": "5"} ) );
-                this.add( new Item( { "category": "Dessetrs", "name": "Ice Cream", "desc": "Pork, mutton, veal",  "price": "4"} ) );
-                this.add( new Item( { "category": "Dessetrs", "name": "Cream Pie", "desc": "Pork, mutton, veal",  "price": "4"} ) );
+//                this.fetch();
+                this.add( new Item( { "category": "Drinks", "name": "Capuccino", "desc": "yummy", "price": "5"} ) );
+                this.add( new Item( { "category": "Desserts", "name": "Ice Cream", "desc": "Pork, mutton, veal",  "price": "4"} ) );
+                this.add( new Item( { "category": "Desserts", "name": "Cream Pie", "desc": "Pork, mutton, veal",  "price": "4"} ) );
                 this.add( new Item( { "category": "Entrees", "name": "Soup", "desc": "tru lu la", "price": "10", "id": "2"} ));
-                this.add( new Item( { "category": "Dricks", "name": "Esspreso", "desc": "yummy", "price": "5"} ) );
+                this.add( new Item( { "category": "Drinks", "name": "Esspreso", "desc": "yummy", "price": "5"} ) );
                 this.add( new Item( { "category": "Sides", "name": "Cheese", "desc": "some ingredients", "price": "10"} ) );
                 this.add( new Item( { "category": "Bar", "name": "Mochitto", "desc": "some ingredients", "price": "3"}));
                 this.add( new Item( { "category": "Bar", "name": "Green Mexican","desc": "some ingredients", "price": "5"}));
@@ -32,50 +31,60 @@ $(function() {
             },
 
             model : Item//,
-//                        url: items
+//            url: items
         } );
 
 
         ItemView = Backbone.View.extend( {
-            tagName: 'div',
+            tagName: 'span',
             className: "menu_item",
             template: _.template( $( "#item_tpl" ).html() ),
+			
+			events: {
+                "click": "addMediatorPub"
+            },
 
             render: function() {
                 this.$el.html( this.template( this.model.toJSON() ) );
                 return this;
-            }
+            },
+			
+			addMediatorPub : function() {
+				Backbone.Mediator.pub("addOrderItem", {"name": this.model.get("name"), "price": this.model.get("price")});
+			}
         });
 
 
         ItemCollectionView = Backbone.View.extend( {
             initialize: function() {
                 this.collection = new ItemsCollection();
-                console.log( this.collection );
             },
 
-//            el: $("#container"),
-/*
-            events: {
-                "click": "render"
+            subscriptions: {
+                'categories-ready': 'render' // calls this.render
             },
-*/
+
+
             addItem: function( item ) {
-                var view = new ItemView( {model: item} );
-                var key = item.get( "category" ),
-                element = this.key;
- //               console.log( key1 );
-                this.$( element ).append( view.render().el );
+                var view = new ItemView( {model: item}),
+                    key = item.get( "category"),
+                    element = this.cat_elements[key];
+
+                    console.log(element);
+                    console.log(view.render().el);
+
+
+                this.$( element ).append( view.render().el ); //element and view.el is ok(see console.logs), but append doesn't add view.el to element
             },
+
 
             render: function() {
-			console.log( arguments[0] );
-//               this.$el.html( "" );
-                this.collection.each( this.addItem, arguments[0] ); //collection undefined :-(((
+                this.cat_elements = arguments[0];
+                this.collection.each( app.addItem, this ); // Warning: Uncaught TypeError: Cannot call method 'each' of undefined (but works)
             }
         });
 
 
     app = new ItemCollectionView();
-    Backbone.Mediator.sub( "categories-ready", app.render );
+    Backbone.Mediator.sub( "categories-ready", app.render);
 });
