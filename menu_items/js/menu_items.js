@@ -50,7 +50,7 @@ $(function() {
             },
 			
 			addMediatorPub : function() {
-				Backbone.Mediator.pub("addOrderItem", {"name": this.model.get("name"), "price": this.model.get("price")});
+				Backbone.Mediator.pub( "addOrderItem", { "name": this.model.get( "name" ), "price": this.model.get( "price" ) } );
 			}
         });
 
@@ -61,17 +61,17 @@ $(function() {
             },
 
             subscriptions: {
-                'categories-ready': 'render' // calls this.render
+                'categories-ready': "render" // calls this.render
             },
 
 
             addItem: function( item ) {
-                var view = new ItemView( {model: item}),
-                    key = item.get( "category"),
-                    element = this.cat_elements[key];
+                var view = new ItemView( { model: item } ),
+                    key = item.get( "category" ),
+                    element = this.cat_elements[ key ];
 
-                    console.log(element);
-                    console.log(view.render().el);
+                    console.log( element );
+                    console.log( view.render().el );
 
 
                 this.$( element ).append( view.render().el ); //element and view.el is ok(see console.logs), but append doesn't add view.el to element
@@ -79,12 +79,12 @@ $(function() {
 
 
             render: function() {
-                this.cat_elements = arguments[0];
+                this.cat_elements = arguments[ 0 ];
                 this.collection.each( app.addItem, this ); // Warning: Uncaught TypeError: Cannot call method 'each' of undefined (but works)
             }
         });
 
 
     app = new ItemCollectionView();
-    Backbone.Mediator.sub( "categories-ready", app.render);
+    Backbone.Mediator.sub( "categories-ready", app.render );
 });

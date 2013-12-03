@@ -44,7 +44,7 @@
 
             <script>
                 $( "#publish" ).click(function() {
-                    Backbone.Mediator.pub("categories-ready", {"Drinks": $("#Drinks1"), "Desserts": $("#Desserts1"), "Entrees": $("#Entrees1"), "Bar": $("#Bar1"), "Sides" : $("#Sides1") });
+                    Backbone.Mediator.pub( "categories-ready", { "Drinks": $( "#Drinks1" ), "Desserts": $( "#Desserts1" ), "Entrees": $( "#Entrees1" ), "Bar": $( "#Bar1" ), "Sides" : $( "#Sides1" ) });
                 });
              </script>
         </body>
