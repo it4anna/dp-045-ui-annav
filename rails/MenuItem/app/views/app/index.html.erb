@@ -1,0 +1,19 @@
+<button type = "button" id="publish">Add Items</button>
+<div id = "Drinks1">Drinks:&nbsp; <br> </div>
+<div id = "Desserts1">Desserts:&nbsp; <br> </div>
+<div id = "Entrees1">Entrees:&nbsp; <br> </div>
+<div id = "Bar1">Bar: <br> </div>
+<div id = "Sides1">Sides: <br> </div>
+
+
+<script>
+    $( "#publish" ).click(function() {
+        Backbone.Mediator.pub( "categories-ready", {
+        "Drinks": $( "#Drinks1" )
+        , "Desserts": $( "#Desserts1" )
+        , "Entrees": $( "#Entrees1" )
+        , "Bar": $( "#Bar1" )
+        , "Sides" : $( "#Sides1" )
+         });
+    });
+</script>

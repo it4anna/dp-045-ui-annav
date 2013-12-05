@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>MenuItem</title>
+  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+  <%= javascript_include_tag "application", "data-turbolinks-track" => true %> 
+  <%= csrf_meta_tags %>
+  
+
+
+				<script src = "app/js/json2.js"></script>
+                <script src = "app/js/jquery.js"></script>
+                <script src = "app/js/underscore.js"></script>
+                <script src = "app/js/backbone.js"></script>
+				<script src = "app/js/backbone-mediator.js"></script>
+                <script src = "app/js/backbone-localstorage.js"></script>
+
+                <script src = "app/js/MenuItem.js"></script>
+				
+
+                          <script type = "text/html" id = "item_tpl">
+					   Category: <?= category ?> &nbsp;
+                       Name: <?= name ?> &nbsp;
+                       Desc.: <?= description ?> &nbsp;
+                        <?= price ?> $&nbsp;
+                </br>
+                </script>
+</head>
+<body>
+
+<%= yield %>
+
+</body>
+</html>
