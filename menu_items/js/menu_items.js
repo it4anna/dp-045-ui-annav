@@ -2,7 +2,7 @@
 
 
 $(function() {
-    var Item,ItemsCollection, ItemView, ItemCollectionView, app;
+    var Item,ItemsCollection, ItemView, CollectionView, app;
 
 
     Item = Backbone.Model.extend( {
@@ -55,13 +55,9 @@ $(function() {
         });
 
 
-        ItemCollectionView = Backbone.View.extend( {
+        CollectionView = Backbone.View.extend( {
             initialize: function() {
                 this.collection = new ItemsCollection();
-            },
-
-            subscriptions: {
-                'categories-ready': "render" // calls this.render
             },
 
 
@@ -70,21 +66,18 @@ $(function() {
                     key = item.get( "category" ),
                     element = this.cat_elements[ key ];
 
-                    console.log( element );
-                    console.log( view.render().el );
-
-
-                this.$( element ).append( view.render().el ); //element and view.el is ok(see console.logs), but append doesn't add view.el to element
+                 element.append( view.render().el );
             },
 
 
-            render: function() {
-                this.cat_elements = arguments[ 0 ];
-                this.collection.each( app.addItem, this ); // Warning: Uncaught TypeError: Cannot call method 'each' of undefined (but works)
+            render: function(elements) {
+                this.cat_elements = elements;
+
+                this.collection.each( this.addItem, this );
             }
         });
 
 
-    app = new ItemCollectionView();
-    Backbone.Mediator.sub( "categories-ready", app.render );
+    app = new CollectionView();
+    Backbone.Mediator.sub( "categories-ready", app.render, app );
 });

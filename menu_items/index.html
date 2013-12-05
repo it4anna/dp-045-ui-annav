@@ -12,34 +12,29 @@
             <script src = "js/backbone-mediator.js"></script>
             <script src = "js/backbone-localstorage.js"></script>
 
-            <script src = "js/menu_items.js"></script>
-            <!--<script src = "js/menu_categories.js"></script>-->
-           <!--<script src = "js/run.js"></script>-->
+ <!--           <script src = "js/menu_items.js"></script> -->
+
+           <script src = "MenuItem/Model.js"></script>
+		               <script src = "MenuItem/View.js"></script>
+            <script src = "MenuItem/Collection.js"></script>
+
+            <script src = "MenuItem/CollectionView.js"></script>
+            <script src = "MenuItem/Run.js"></script>
 
             <script type = "text/html" id = "item_tpl">
-                       Category: <%= category %> &nbsp;
                        Name: <%= name %> &nbsp;
-                       Description: <%= desc %> &nbsp;
-                       Price: <%= price %> &nbsp;
+                       Desc.: <%= desc %> &nbsp;
+                        <%= price %> $&nbsp;
+                </br>
                 </script>
-
-<!--
-            <script type = "text/html" id = "category"><br>
-                   <div class = "category-container" >
-                       Category_name: <%= category_name %>
-                   </div>
-                </script>
--->
-
-
         </head>
         <body>
             <button type = "button" id="publish">Add Items</button>
-            <div id = "Drinks1">Drinks</div>
-            <div id = "Desserts1">Desserts</div>
-            <div id = "Entrees1">Entrees</div>
-            <div id = "Bar1">Bar</div>
-            <div id = "Sides1">Sides</div>
+            <div id = "Drinks1">Drinks:&nbsp; <br> </div>
+            <div id = "Desserts1">Desserts:&nbsp; <br> </div>
+            <div id = "Entrees1">Entrees:&nbsp; <br> </div>
+            <div id = "Bar1">Bar: <br> </div>
+            <div id = "Sides1">Sides: <br> </div>
 
 
             <script>
